@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/changeset/V001__create_account_table.sql
+  - include:
+      file: db/changelog/changeset/V002__create_account_role_table.sql
+  - include:
+      file: db/changelog/changeset/V003__create_account_role_mapping_table.sql

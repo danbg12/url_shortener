@@ -23,3 +23,10 @@ server:
 logging:
   level:
     root: info
+
+cleaner:
+   cron: 0 0 2 * * ?
+
+hash:
+  batch:
+    size: 1000
