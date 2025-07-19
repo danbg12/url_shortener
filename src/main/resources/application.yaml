@@ -30,3 +30,12 @@ cleaner:
 hash:
   batch:
     size: 1000
+
+redis:
+  repository:
+    key-prefix: "url:"
+    ttl: 72
+
+base62:
+  encoder:
+    charset: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"

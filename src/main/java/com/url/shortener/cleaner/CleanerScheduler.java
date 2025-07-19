@@ -22,7 +22,7 @@ public class CleanerScheduler {
     public void cleanOldUrlsAndReturnHash() {
         log.info("Starting scheduled cleanup of old URLs and returning their hash codes.");
         List<String> newFreeHashCodes = urlRepository.deleteExpiredUrlsAndReturnHashCodes();
-        hashRepository.save(newFreeHashCodes.toArray(new String[0]));
+        hashRepository.saveBatch(newFreeHashCodes.toArray(new String[0]));
         log.info("Cleanup completed. {} old URLs removed and their hash codes returned.", newFreeHashCodes.size());
     }
 }

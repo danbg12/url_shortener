@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/changeset/V001__create_hash_table.sql
+  - include:
+      file: db/changelog/changeset/V002__create_url_table.sql
+  - include:
+      file: db/changelog/changeset/V003__add_hash_code_column_indexes.sql
+  - include:
+      file: db/changelog/changeset/V004__create_unique_numbers_seq.sql
