@@ -29,7 +29,7 @@ cleaner:
 
 hash:
   batch:
-    size: 1000
+    size: 100
 
 redis:
   repository:
@@ -39,3 +39,11 @@ redis:
 base62:
   encoder:
     charset: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+
+async:
+  executor:
+    core-pool-size: 5
+    max-pool-size: 10
+    queue-capacity: 100
+    thread-name-prefix: url-shortener-async-
+    keep-alive-seconds: 60

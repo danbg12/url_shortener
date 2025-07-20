@@ -8,7 +8,6 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -20,16 +19,14 @@ public class HashGenerator {
     private final HashRepository hashRepository;
     private final Base62Encoder base62Encoder;
 
-    @Async()
+    @Async("customAsyncExecutor")
     @Transactional
     public void generateBatch() {
         log.info("Starting batch generation of unique hash codes.");
         List<Long> uniqueNumbers = hashRepository.getUniqueNumbersBatch(batchSize);
-        List<String> newFreeHashCodes = new ArrayList<>();
-        for (Long uniqueNumber : uniqueNumbers) {
-            newFreeHashCodes.add(base62Encoder.encode(uniqueNumber));
-        }
-        hashRepository.saveBatch(newFreeHashCodes.toArray(new String[0]));
-        log.info("Successfully generated and saved {} new hash codes.", newFreeHashCodes.size());
+        List<String> encodedNumIntoHash = base62Encoder.encode(uniqueNumbers);
+
+        hashRepository.saveBatch(encodedNumIntoHash.toArray(new String[0]));
+        log.info("Successfully generated and saved {} new hash codes.", encodedNumIntoHash.size());
     }
 }
