@@ -24,6 +24,8 @@ Using Docker Compose (Recommended)
    `docker-compose up -d`
 
 ## Architecture
+<img width="2396" height="1002" alt="image" src="https://github.com/user-attachments/assets/cd2c4cf8-e0b1-4d2c-bef8-a0fad2f01de3" />
+
 
 ### Key Components
 
@@ -32,6 +34,7 @@ Using Docker Compose (Recommended)
 - **URL Service**: Business logic and caching layer
 - **URL Repository**: Data access layer with PostgreSQL
 - **Redis Cache**: High-performance caching for frequent redirections
+<img width="2388" height="1038" alt="image" src="https://github.com/user-attachments/assets/d85d294b-a7c5-4438-8a83-468ddcf01c7f" />
 
 ## Tech Stack
 
