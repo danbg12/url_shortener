@@ -22,7 +22,6 @@ public class HashCache {
 
     private final int cacheSize;
     private final double refillThreshold;
-
     private final AtomicBoolean isRefilling = new AtomicBoolean(false);
 
     public HashCache(
@@ -44,10 +43,12 @@ public class HashCache {
 
     @PostConstruct
     private void init() {
+        log.info("Initializing HashCache with initial refill.");
         refillCacheIfNeeded();
     }
 
     private boolean needsRefill() {
+        log.info("Checking if cache needs refill.");
         double currentPercentage = (double) hashQueue.size() / cacheSize;
         return currentPercentage < refillThreshold;
     }
