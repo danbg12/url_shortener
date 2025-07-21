@@ -79,6 +79,34 @@ public class UrlExceptionHandler {
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ErrorResponse handleFailedReadHashException(FailedReadHashException e) {
+        log.warn("Invalid argument: {}", e.getMessage(), e);
+
+        return ErrorResponse.builder()
+                .message(e.getMessage())
+                .errorCode("INVALID_ARGUMENT")
+                .timestamp(LocalDateTime.now().format(TIME_PATTERN))
+                .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                .path(getPath())
+                .build();
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ErrorResponse handleFailedHashBatchException(FailedHashBatchException e) {
+        log.warn("Invalid argument: {}", e.getMessage(), e);
+
+        return ErrorResponse.builder()
+                .message(e.getMessage())
+                .errorCode("INVALID_ARGUMENT")
+                .timestamp(LocalDateTime.now().format(TIME_PATTERN))
+                .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                .path(getPath())
+                .build();
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse handleIllegalArgumentException(IllegalArgumentException e) {
         log.warn("Invalid argument: {}", e.getMessage(), e);
