@@ -29,9 +29,9 @@ cleaner:
 
 hash:
   batch:
-    size: 1000
+    size: 100
   cache:
-    size: 1000
+    size: 100
     refill-threshold: 0.2
 
 redis:

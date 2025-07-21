@@ -19,7 +19,7 @@ public interface HashRepository extends JpaRepository<Hash, Long> {
 
     @Modifying
     @Transactional(rollbackFor = SQLException.class)
-    @Query(value = "INSERT INTO hash (url_hash_code) SELECT UNNEST(:values::TEXT[])", nativeQuery = true)
+    @Query(value = "INSERT INTO hash (url_hash_code) SELECT unnest(CAST(:values AS text[]))", nativeQuery = true)
     void saveBatch(@Param("values") String[] values);
 
     @Modifying

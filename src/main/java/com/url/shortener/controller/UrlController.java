@@ -1,7 +1,8 @@
 package com.url.shortener.controller;
 
+import com.url.shortener.model.RequestUrlDto;
 import com.url.shortener.service.UrlService;
-import com.url.shortener.validation.ValidUrl;
+import jakarta.validation.Valid;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,16 +27,16 @@ import java.net.URI;
 public class UrlController {
     private final UrlService urlService;
 
-    @PostMapping("/shorten/{originalUrl}")
-    public String shortenURL(@PathVariable @ValidUrl String originalUrl) {
-        log.info("Received URL to shorten: {}", originalUrl);
-        return urlService.shortenURL(originalUrl);
+    @PostMapping("/shorten")
+    public String shortenURL(@RequestBody @Valid RequestUrlDto originalUrl) {
+        log.info("Received URL to shorten: {}", originalUrl.getUrl());
+        return urlService.shortenURL(originalUrl.getUrl());
     }
 
-    @GetMapping("/redirect/{shortUrl}")
-    public ResponseEntity<Void> getRedirectToOriginalUrl(@PathVariable @ValidUrl String shortUrl) {
-        log.info("Received URL to retrieve short URL: {}", shortUrl);
-        String originalUrlForRedirect = urlService.getShortUrl(shortUrl);
+    @GetMapping("/redirect")
+    public ResponseEntity<Void> getRedirectToOriginalUrl(@RequestBody @Valid RequestUrlDto shortUrl) {
+        log.info("Received URL to retrieve short URL: {}", shortUrl.getUrl());
+        String originalUrlForRedirect = urlService.getShortUrl(shortUrl.getUrl());
         log.info("Redirecting to original URL: {}", originalUrlForRedirect);
         return ResponseEntity
                 .status(HttpStatus.MOVED_PERMANENTLY)

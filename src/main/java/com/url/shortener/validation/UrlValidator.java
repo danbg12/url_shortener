@@ -34,7 +34,7 @@ public class UrlValidator implements ConstraintValidator<ValidUrl, String> {
                 return false;
             }
 
-            if (url.length() < 30 || url.length() > 2048) {
+            if (url.length() < 10 || url.length() > 2048) {
                 return false;
             }
             log.info("URL is valid: {}", url);

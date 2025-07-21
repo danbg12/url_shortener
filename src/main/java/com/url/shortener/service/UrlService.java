@@ -25,14 +25,15 @@ public class UrlService {
 
     public String shortenURL(String originalUrl) {
         log.info("Shortening URL: {}", originalUrl);
-        String shortUrlWithHash = shortUrlPrefix + hashCache.getHash();
+        String hash = hashCache.getHash();
+        String shortUrlWithHash = shortUrlPrefix + hash;
 
         log.info("Create new URL entity with short URL: {}", shortUrlWithHash);
         Url url = new Url();
         url.setOriginalUrl(originalUrl);
         url.setShortUrl(shortUrlWithHash);
         url.setExpiresAt(LocalDateTime.now().plusDays(shortUrlLifetime));
-        url.setUrlHashCode(hashCache.getHash());
+        url.setUrlHashCode(hash);
 
         urlCacheRepository.save(shortUrlWithHash, originalUrl);
         log.info("Url saved in cache with short URL: {}", shortUrlWithHash);

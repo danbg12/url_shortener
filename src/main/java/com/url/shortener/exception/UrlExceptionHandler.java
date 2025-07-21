@@ -78,28 +78,28 @@ public class UrlExceptionHandler {
                 .build();
     }
 
-    @ExceptionHandler(IllegalArgumentException.class)
+    @ExceptionHandler(FailedReadHashException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorResponse handleFailedReadHashException(FailedReadHashException e) {
-        log.warn("Invalid argument: {}", e.getMessage(), e);
+        log.warn("Failed read hash: {}", e.getMessage(), e);
 
         return ErrorResponse.builder()
                 .message(e.getMessage())
-                .errorCode("INVALID_ARGUMENT")
+                .errorCode("FAILED_READ_HASH")
                 .timestamp(LocalDateTime.now().format(TIME_PATTERN))
                 .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
                 .path(getPath())
                 .build();
     }
 
-    @ExceptionHandler(IllegalArgumentException.class)
+    @ExceptionHandler(FailedHashBatchException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorResponse handleFailedHashBatchException(FailedHashBatchException e) {
-        log.warn("Invalid argument: {}", e.getMessage(), e);
+        log.warn("Failed hash batch: {}", e.getMessage(), e);
 
         return ErrorResponse.builder()
                 .message(e.getMessage())
-                .errorCode("INVALID_ARGUMENT")
+                .errorCode("FAILED_HASH_BATCH")
                 .timestamp(LocalDateTime.now().format(TIME_PATTERN))
                 .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
                 .path(getPath())

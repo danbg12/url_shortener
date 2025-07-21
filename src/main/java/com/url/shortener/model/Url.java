@@ -25,7 +25,7 @@ public class Url {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "original_url", unique = true, nullable = false)
-    @Size(min = 30, max = 2048, message = "URL must be between 30 and 2048 characters")
+    @Size(min = 15, max = 2048, message = "URL must be between 30 and 2048 characters")
     private String originalUrl;
     @Column(name = "short_url", unique = true, nullable = false)
     private String shortUrl;
