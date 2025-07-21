@@ -3,10 +3,12 @@ package com.url.shortener.validation;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 import java.net.URL;
 
 @Slf4j
+@Component
 public class UrlValidator implements ConstraintValidator<ValidUrl, String> {
     @Override
     public boolean isValid(String url, ConstraintValidatorContext context) {

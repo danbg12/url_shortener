@@ -1,0 +1,13 @@
+test-base62:
+  encoder:
+    charset: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+
+postgres:
+  image-name: "postgres:13.6"
+  container-name: "testdb"
+  username: "testuser"
+  password: "testpass"
+
+redis:
+  image-name: "redis:7.0-alpine"
+  port: 6379
